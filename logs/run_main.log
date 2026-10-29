@@ -1,0 +1,79 @@
+[08:24:24] model id: deepseek-v4.1-flash
+[08:24:24] RUN speed_1 ...
+[08:24:41]   speed_1: TTFT 1.75s · decode 10.45 tok/s · 163 tok · 17.3s
+[08:24:41] RUN speed_2 ...
+[08:24:58]   speed_2: TTFT 0.16s · decode 11.63 tok/s · 200 tok · 17.4s
+[08:24:58] RUN speed_3 ...
+[08:25:13]   speed_3: TTFT 0.19s · decode 11.34 tok/s · 165 tok · 14.7s
+[08:25:13] RUN context_8k ...
+[08:25:30]   context_8k: TTFT 15.75s · decode 7.8 tok/s · 6 tok · 16.5s
+[08:25:30]   recall PASS
+[08:25:30] RUN context_32k ...
+[08:26:12]   context_32k: TTFT 41.36s · decode 11.37 tok/s · 6 tok · 41.9s
+[08:26:12]   recall PASS
+[08:26:12] RUN hard_aime ...
+[08:27:05]   hard_aime: TTFT 4.85s · decode 7.82 tok/s · 383 tok · 53.8s
+[08:27:05]   hard_aime: PASS (got 70, want 70)
+[08:27:05] RUN hard_zeros ...
+[08:27:49]   hard_zeros: TTFT 2.68s · decode 7.65 tok/s · 310 tok · 43.2s
+[08:27:49]   hard_zeros: PASS (got 105, want 105)
+[08:27:49] RUN hard_letters ...
+[08:28:08]   hard_letters: TTFT 2.64s · decode 7.96 tok/s · 135 tok · 19.6s
+[08:28:08]   hard_letters: PASS (got 6, want 6)
+[08:28:08] RUN hard_code ...
+[08:29:02]   hard_code: TTFT 6.03s · decode 7.69 tok/s · 370 tok · 54.1s
+[08:29:02]   hard_code: PASS HIDDEN TESTS: 5/5 passed 
+[08:29:02] RUN svg_poster ...
+[08:34:24]   svg_poster: TTFT 6.33s · decode 7.94 tok/s · 2500 tok · 321.1s
+[08:34:24] RUN canvas_scene ...
+[08:41:15]   canvas_scene: TTFT 5.67s · decode 8.63 tok/s · 3500 tok · 411.1s
+[08:41:15] RUN chess_ai ...
+[08:45:52] model id: deepseek-v4.1-flash
+[08:45:52] skip speed_1 (done)
+[08:45:52] skip speed_2 (done)
+[08:45:52] skip speed_3 (done)
+[08:45:52] skip context_8k (done)
+[08:45:52] skip context_32k (done)
+[08:45:52] skip hard_aime (done)
+[08:45:52] skip hard_zeros (done)
+[08:45:52] skip hard_letters (done)
+[08:45:52] skip hard_code (done)
+[08:45:52] RUN svg_poster ...
+[08:52:05]   svg_poster: TTFT 0.24s · decode 10.02 tok/s · 3729 tok · 372.5s
+[08:52:05] RUN canvas_scene ...
+[08:58:28]   canvas_scene: TTFT 0.2s · decode 9.32 tok/s · 3575 tok · 383.7s
+[08:58:28] RUN chess_ai ...
+[09:13:51]   chess_ai: TTFT 0.18s · decode 9.11 tok/s · 8401 tok · 922.6s
+[09:13:51] RUN roguelike_3d ...
+[09:25:29]   roguelike_3d: TTFT 5.18s · decode 9.04 tok/s · 6271 tok · 698.5s
+[09:25:29] RUN threejs_scene ...
+[09:30:05]   threejs_scene: TTFT 3.87s · decode 9.23 tok/s · 2508 tok · 275.5s
+[09:30:05] RUN vision_chart ...
+[09:30:39]   vision_chart: TTFT 16.1s · decode 7.7 tok/s · 140 tok · 34.3s
+[09:30:39]   vision_chart: PASS
+[09:30:39] RUN vision_ui ...
+[09:33:13]   vision_ui: TTFT 5.6s · decode 8.85 tok/s · 1311 tok · 153.8s
+[09:33:13] RUN multilingual ...
+[09:34:28]   multilingual: TTFT 5.42s · decode 7.81 tok/s · 542 tok · 74.8s
+[09:34:28] DONE
+| Test | TTFT s | Decode tok/s | Prefill tok/s | Prompt tok | Gen tok | Total s |
+|---|---|---|---|---|---|---|
+| speed_1 | 1.75 | 10.45 | 12.0 | 21 | 163 | 17.3 |
+| speed_2 | 0.16 | 11.63 | 134.3 | 21 | 200 | 17.4 |
+| speed_3 | 0.19 | 11.34 | 112.7 | 21 | 165 | 14.7 |
+| context_8k | 15.75 | 7.8 | 363.5 | 5723 | 6 | 16.5 |
+| context_32k | 41.36 | 11.37 | 551.4 | 22804 | 6 | 41.9 |
+| hard_aime | 4.85 | 7.82 | 13.0 | 63 | 383 | 53.8 |
+| hard_zeros | 2.68 | 7.65 | 11.6 | 31 | 310 | 43.2 |
+| hard_letters | 2.64 | 7.96 | 11.4 | 30 | 135 | 19.6 |
+| hard_code | 6.03 | 7.69 | 10.6 | 64 | 370 | 54.1 |
+| svg_poster | 6.33 | 7.94 | 10.6 | 67 | 2500 | 321.1 |
+| canvas_scene | 5.67 | 8.63 | 11.5 | 65 | 3500 | 411.1 |
+| svg_poster | 0.24 | 10.02 | 277.1 | 67 | 3729 | 372.5 |
+| canvas_scene | 0.2 | 9.32 | 326.8 | 65 | 3575 | 383.7 |
+| chess_ai | 0.18 | 9.11 | 619.2 | 110 | 8401 | 922.6 |
+| roguelike_3d | 5.18 | 9.04 | 29.2 | 151 | 6271 | 698.5 |
+| threejs_scene | 3.87 | 9.23 | 26.6 | 103 | 2508 | 275.5 |
+| vision_chart | 16.1 | 7.7 | 17.5 | 282 | 140 | 34.3 |
+| vision_ui | 5.6 | 8.85 | 52.3 | 293 | 1311 | 153.8 |
+| multilingual | 5.42 | 7.81 | 10.3 | 56 | 542 | 74.8 |

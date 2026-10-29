@@ -1,0 +1,181 @@
+=== THINKING ===
+We need answer only exact lines to change as OLD/NEW code blocks. Need identify two bugs.
+
+Bug 1: Black pieces show same light color as White. In CSS .piece no color set; Unicode chess symbols may render as text with inherited color e6e6e6, same for both. Need set color based on side. Since symbols black pieces are filled glyphs? Actually Unicode chess symbols: white pieces ♔ etc are outline? Black pieces ♚ etc are filled. But CSS color e6e6e6 makes both light. Need assign color for black pieces. Could set span.style.color = isWhite(p) ? '#f8f8f8' : '#111'? But board light/dark. Need exact lines. In renderBoard:
+const span = document.createElement('span');
+span.className = 'piece';
+span.textContent = PIECES[p];
+cell.appendChild(span);
+Need add span.style.color = isWhite(p) ? '#f5f5f5' : '#111'; maybe black pieces dark. Or CSS .piece.black? But exact lines.
+
+Bug 2: computer plays terrible moves like trying to lose. Cause likely minimax sign/evaluation or chooseComputerMove uses minimax from White perspective incorrectly. Let's analyze.
+
+evaluate(b) returns positive for White material, negative for Black. minimax(b, side,...): isMax = side === 'w'. If side 'w' maximizing (White), if side 'b' minimizing. Terminal returns side==='w' ? -100000 : 100000. If side to move is checkmated: for side 'w' checkmated -> -100000 (bad for White) correct. For side 'b' checkmated -> +100000 (bad for Black? If Black to move and checkmated, evaluation from White perspective should +100000 yes). Good.
+
+chooseComputerMove: for each black move, apply, then minimax(res.board, 'w', ..., depth 2). It sets bestVal = -Infinity and picks val > bestVal. But minimax returns evaluation from White perspective. Black wants minimize White score, i.e., choose smallest val, not largest. It picks maximum, so Black tries to maximize White's score = trying to lose. Exactly. Need change bestVal = Infinity and if val < bestVal. Or call minimax with side 'b'? Let's see.
+
+In chooseComputerMove, after applying black move, turn is White. minimax evaluates from White perspective. Black should choose move with minimal resulting value. Current picks max. So fix:
+let bestVal = Infinity;
+...
+if (val < bestVal) { bestVal = val; bestMoves = [m]; } else if (val === bestVal) ...
+Need exact lines.
+
+Also maybe depth 2 too shallow? But bug described terrible moves like trying to lose. The main cause is sign. Need provide only exact lines. Need include OLD and NEW code blocks. Keep short. Need maybe include CSS color line.
+
+Let's craft answer with two fixes. For bug 1, exact lines in renderBoard. Could use:
+OLD:
+span.className = 'piece';
+span.textContent = PIECES[p];
+NEW:
+span.className = 'piece';
+span.style.color = isWhite(p) ? '#f5f5f5' : '#111';
+span.textContent = PIECES[p];
+Need ensure black pieces visible on dark squares. #111 on dark #b58863 okay. On light #f0d9b5 also okay. White #f5f5f5 on light maybe low contrast? But white pieces should be white; could use #fff and black #000. But on light squares white outline? Actually white chess glyphs are outline (♔) and black are filled. If color white, outline white on light square may be invisible. Better use white pieces dark? Wait Unicode white piece symbols are outline shapes; if colored white on light square, they may be hard. But original all light e6e6e6. Need distinguish sides. Could color white pieces #fff with black stroke? CSS text no stroke. Could use black pieces #111 and white pieces #fff. On light squares white outline may be low contrast but acceptable? Maybe use white pieces #fff and black pieces #111. But white pieces on light squares barely visible. Alternative use white pieces #f8f8f8 and black pieces #222. Or use CSS text-shadow for white? But exact lines only. Maybe set span.style.color = isWhite(p) ? '#fff' : '#000'; plus text-shadow? Not necessary. The bug is black same light color; fix black dark. White pieces remain light. On light squares white outline may be low contrast but original had same. Could set white pieces to '#2a2a33'? Wait chess symbols: white pieces are outlined, black pieces filled. If we color white pieces dark, they appear dark outlines; black pieces dark filled. That would make both dark? Hmm.
+
+Let's understand Unicode: ♔ (white king) is outline of king? It is a hollow shape? Actually U+2654 WHITE CHESS KING is a white outline? In many fonts, white pieces are outlined, black pieces filled. If CSS color is light, white outline is light, black filled is light. To distinguish, set black pieces to dark, white pieces to light. On light squares, white outline light may be hard, but on dark squares visible. Could set white pieces to #fff and black pieces #111. Good.
+
+Maybe better use span.style.color = isWhite(p) ? '#fff' : '#111'; This is exact.
+
+Bug 2 exact lines:
+OLD:
+    let bestVal = -Infinity;
+    let bestMoves = [];
+    for (const m of moves) {
+      const res = applyMove(b, m, cast, ep);
+      const val = minimax(res.board, 'w', res.castling, res.enPassant, 2, -Infinity, Infinity);
+      if (val > bestVal) {
+        bestVal = val;
+        bestMoves = [m];
+      } else if (val === bestVal) {
+        bestMoves.push(m);
+      }
+    }
+NEW:
+    let bestVal = Infinity;
+    let bestMoves = [];
+    for (const m of moves) {
+      const res = applyMove(b, m, cast, ep);
+      const val = minimax(res.board, 'w', res.castling, res.enPassant, 2, -Infinity, Infinity);
+      if (val < bestVal) {
+        bestVal = val;
+        bestMoves = [m];
+      } else if (val === bestVal) {
+        bestMoves.push(m);
+      }
+    }
+
+Need only exact lines to change. Could present as two OLD/NEW blocks. Keep short. Ensure no extra explanation? User says "give me ONLY the exact lines to change, as 'OLD:' and 'NEW:' code blocks. Keep it short." We should output only code blocks with OLD and NEW. Maybe two pairs. Need include exact lines. For bug 1, exact lines in renderBoard. For bug 2, exact lines in chooseComputerMove. Need maybe mention "Bug 1" and "Bug 2"? They said ONLY exact lines; maybe no labels? But can include OLD/NEW blocks. We can include two OLD/NEW pairs. Need ensure code blocks tagged. They asked as 'OLD:' and 'NEW:' code blocks. We can do:
+
+OLD:
+```js
+span.className = 'piece';
+span.textContent = PIECES[p];
+```
+NEW:
+```js
+span.className = 'piece';
+span.style.color = isWhite(p) ? '#fff' : '#111';
+span.textContent = PIECES[p];
+```
+
+OLD:
+```js
+    let bestVal = -Infinity;
+...
+      if (val > bestVal) {
+...
+```
+NEW:
+```js
+    let bestVal = Infinity;
+...
+      if (val < bestVal) {
+...
+```
+Need exact lines. Could include full block for bug2. Keep short. Maybe include only changed lines:
+OLD:
+```js
+let bestVal = -Infinity;
+...
+if (val > bestVal) {
+```
+NEW:
+```js
+let bestVal = Infinity;
+...
+if (val < bestVal) {
+```
+But exact lines? The user wants exact lines to change. We can include the two lines separately. But if we use ellipsis, not exact. Better include full relevant block. But "Keep it short." We can include full block for bug2. For bug1, include three lines. That's fine.
+
+Need consider if there are other bugs? Let's double-check bug 1: CSS .piece no color. The board cells have background light/dark. The text color inherited from body #e6e6e6. Both white and black pieces are same. So fix color. Good.
+
+Bug 2: chooseComputerMove picks max. Yes.
+
+But wait: There may be another issue: minimax depth 2 and alpha-beta with side 'w' from after black move. It returns value from White perspective. Black wants minimize. So fix. But also in minimax, move ordering and alpha-beta: for minimizing side, it updates beta. Good. However chooseComputerMove uses minimax(res.board, 'w', ..., depth 2) with alpha -Infinity beta Infinity. That's fine. But if val is from White perspective, black chooses min. Good.
+
+Potential subtle bug: In evaluate, PST for black uses table[7-r][c]. Is that correct? For black pieces, mirror vertically. Yes. But wait, PST tables are from White's perspective with rank 0 = top (rank 8). For black, a black pawn at row 1 (rank 7) should use table[7-1][c] = table[6][c]. White pawn at row 6 uses table[6][c]. So black pawn at row 1 gets same PST as white pawn at row 6? Actually black pawns start at row 1 and move down; their PST should mirror white pawn table. table[6][c] for white pawn near start? White pawn start row 6, table[6] has [5,10,10,-20,-20,10,10,5]? Hmm PST P table row 6 is [5,10,10,-20,-20,10,10,5], not ideal? Wait standard PST for pawns from White perspective: row 0 (rank 8) zeros, row 1 (rank 7) 50, row 2 (rank 6) 10, row 3 (rank 5) 5, row 4 (rank 4) 0, row 5 (rank 3) 5,-5,-10,0,0,-10,-5,5, row 6 (rank 2) 5,10,10,-20,-20,10,10,5, row 7 (rank 1) zeros. That seems reversed? Standard pawn PST often has high values near promotion (rank 7 for White? Actually White pawns move from rank 2 to rank 7, so high values near rank 7 (row 1). The table given has row 1 = 50, row 2 = 10, row 3 = 5, row 4 = 0, row 5 = 5,-5,-10,0,0,-10,-5,5, row 6 = 5,10,10,-20,-20,10,10,5. This is weird: row 6 (rank 2) has negative center, row 1 (rank 7) high. That might be standard for White? Actually standard pawn PST (from White perspective) often:
+0,0,0,0,0,0,0,0
+50,50,50,50,50,50,50,50
+10,10,20,30,30,20,10,10
+5,5,10,25,25,10,5,5
+0,0,0,20,20,0,0,0
+5,-5,-10,0,0,-10,-5,5
+5,10,10,-20,-20,10,10,5
+0,0,0,0,0,0,0,0
+This is standard with row 0 top (rank 8). White pawns start at row 6 (rank 2) and move up to row 0 (rank 8). The table row 1 (rank 7) high 50, row 2 (rank 6) 10, row 3 (rank 5) 5, row 4 (rank 4) 0, row 5 (rank 3) 5,-5... row 6 (rank 2) 5,10,10,-20... Hmm row 6 has negative center, which is standard? Actually standard from White perspective (rank 1 at bottom) often:
+0,0,0,0,0,0,0,0
+5,10,10,-20,-20,10,10,5
+5,-5,-10,0,0,-10,-5,5
+0,0,0,20,20,0,0,0
+5,5,10,25,25,10,5,5
+10,10,20,30,30,20,10,10
+50,50,50,50,50,50,50,50
+0,0,0,0,0,0,0,0
+If row 0 = rank 1 (bottom), then row 6 = rank 7 high. But here row 0 = top rank 8. So table is flipped from standard? Let's map: They set initial board row 0 = black pieces (rank 8), row 7 = white pieces (rank 1). For White, row 7 is bottom. PST table row 0 top rank 8. For White pawn at row 6 (rank 2), table[6] = [5,10,10,-
+
+I have thought about this long enough; time to give my answer.
+
+
+=== ANSWER ===
+OLD:
+```js
+span.className = 'piece';
+span.textContent = PIECES[p];
+```
+NEW:
+```js
+span.className = 'piece';
+span.style.color = isWhite(p) ? '#fff' : '#111';
+span.textContent = PIECES[p];
+```
+
+OLD:
+```js
+    let bestVal = -Infinity;
+    let bestMoves = [];
+    for (const m of moves) {
+      const res = applyMove(b, m, cast, ep);
+      const val = minimax(res.board, 'w', res.castling, res.enPassant, 2, -Infinity, Infinity);
+      if (val > bestVal) {
+        bestVal = val;
+        bestMoves = [m];
+      } else if (val === bestVal) {
+        bestMoves.push(m);
+      }
+    }
+```
+NEW:
+```js
+    let bestVal = Infinity;
+    let bestMoves = [];
+    for (const m of moves) {
+      const res = applyMove(b, m, cast, ep);
+      const val = minimax(res.board, 'w', res.castling, res.enPassant, 2, -Infinity, Infinity);
+      if (val < bestVal) {
+        bestVal = val;
+        bestMoves = [m];
+      } else if (val === bestVal) {
+        bestMoves.push(m);
+      }
+    }
+```

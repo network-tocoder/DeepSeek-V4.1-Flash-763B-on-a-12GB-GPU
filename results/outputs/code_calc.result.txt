@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/tmp/code_calc_test.py", line 94, in <module>
+    assert close(evaluate('-2 ^ 2'), -4)
+AssertionError

@@ -1,0 +1,54 @@
+{'test': 'fix_chess', 'total_s': 485.5, 'prompt_tokens': 8513, 'gen_tokens': 3318, 'decode_tps': 7.3, 'prefill_tps': 274.6}
+OLD:
+```js
+span.className = 'piece';
+span.textContent = PIECES[p];
+```
+NEW:
+```js
+span.className = 'piece';
+span.style.color = isWhite(p) ? '#fff' : '#111';
+span.textContent = PIECES[p];
+```
+
+OLD:
+```js
+    let bestVal = -Infinity;
+    let bestMoves = [];
+    for (const m of moves) {
+      const res = applyMove(b, m, cast, ep);
+      const val = minimax(res.board, 'w', res.castling, res.enPassant, 2, -Infinity, Infinity);
+      if (val > bestVal) {
+        bestVal = val;
+        bestMoves = [m];
+      } else if (val === bestVal) {
+        bestMoves.push(m);
+      }
+    }
+```
+NEW:
+```js
+    let bestVal = Infinity;
+    let bestMoves = [];
+    for (const m of moves) {
+      const res = applyMove(b, m, cast, ep);
+      const val = minimax(res.board, 'w', res.castling, res.enPassant, 2, -Infinity, Infinity);
+      if (val < bestVal) {
+        bestVal = val;
+        bestMoves = [m];
+      } else if (val === bestVal) {
+        bestMoves.push(m);
+      }
+    }
+``` 
+------------------------------------------------------------
+{'test': 'fix_roguelike', 'total_s': 280.2, 'prompt_tokens': 6359, 'gen_tokens': 1860, 'decode_tps': 7.3, 'prefill_tps': 261.9}
+OLD:
+```js
+const dist = b.position.distanceTo(e.group.position);
+```
+NEW:
+```js
+const dist = Math.hypot(b.position.x - e.group.position.x, b.position.z - e.group.position.z);
+``` 
+------------------------------------------------------------

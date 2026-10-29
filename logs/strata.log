@@ -1,0 +1,31 @@
+    DeepSeek runs on its own engine package, so the Strata engine is not downloaded for it.
+    Getting deepseek41 IST-DAS-2.00bpw ready (a download may be large; it continues where it stopped if interrupted)…
+    Getting your model ready
+    Checking your computer
+    Getting the helper packages ready
+    Checking the engine for this PC
+    Downloading the model files: 26.5 of 256.8 GB
+    Checking that the model files are complete (a few minutes for a big model; nothing is downloaded): 10.8 of 39.1 GB
+    Checking that the model files are complete (a few minutes for a big model; nothing is downloaded): 17.9 of 39.1 GB
+    Checking that the model files are complete (a few minutes for a big model; nothing is downloaded): 21.6 of 39.1 GB
+    Checking that the model files are complete (a few minutes for a big model; nothing is downloaded): 28.8 of 39.1 GB
+    Checking that the model files are complete (a few minutes for a big model; nothing is downloaded): 36.0 of 39.1 GB
+    Preparing your model for Strata (one time)
+    Saving the model's settings
+    deepseek41 IST-DAS-2.00bpw is ready.
+    Writing this launch's settings…
+    DeepSeek engine: /root/.local/share/strata/install/engine-dsv41/0.1.52-linux-x86_64-cuda-cuda13/strata-dsv41 (the install the model's settings came from).
+    Settings are saved.
+    Starting the engine and loading the model. The first start can take a few minutes.
+    The model is loaded and answering.
+    Ready: http://127.0.0.1:8081
+    Strata is serving.
+
+Strata is serving.
+  This computer  http://127.0.0.1:8081/v1
+  Anthropic apps http://127.0.0.1:8081   (Claude Code: ANTHROPIC_BASE_URL, no /v1 at the end)
+  Speed          Faster (default on this PC). Faster uses 5 of 6 experts per word: a small quality change, usually not noticeable.
+  Engine log     /root/.local/state/strata/launch/ist-das-2-00bpw-64k.engine.log   (follow it: strata logs --follow)
+  Watch it:    strata monitor --url http://127.0.0.1:8081
+  Connect an app:  strata connect opencode      Stop:  strata launch --stop
+  To keep these settings for next time, add --save-preset NAME.

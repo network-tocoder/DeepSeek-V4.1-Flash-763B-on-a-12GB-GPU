@@ -1,0 +1,18 @@
+Here is the data from the chart:
+- Jan: 120
+- Feb: 95
+- Mar: 160
+- Apr: 210
+- May: 185
+- Jun: 240
+
+Calculating the month-over-month increases:
+- Jan to Feb: 95 - 120 = -25
+- Feb to Mar: 160 - 95 = 65
+- Mar to Apr: 210 - 160 = 50
+- Apr to May: 185 - 210 = -25
+- May to Jun: 240 - 185 = 55
+
+The biggest increase is 65, which occurs from February to March.
+
+ANSWER: Mar

@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="40%" stop-color="#141b2d"/>
+      <stop offset="100%" stop-color="#1a1f3a"/>
+    </linearGradient>
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2f45"/>
+      <stop offset="50%" stop-color="#1a1e30"/>
+      <stop offset="100%" stop-color="#0f1220"/>
+    </linearGradient>
+    <linearGradient id="cardEdge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3a4560"/>
+      <stop offset="100%" stop-color="#1a1e30"/>
+    </linearGradient>
+    <linearGradient id="circuitGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="50%" stop-color="#00b8d4"/>
+      <stop offset="100%" stop-color="#006064"/>
+    </linearGradient>
+    <linearGradient id="fanGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3a4560"/>
+      <stop offset="100%" stop-color="#1a1e30"/>
+    </linearGradient>
+    <linearGradient id="glowLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00e5ff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glowFilter">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="720" fill="url(#bgGrad)"/>
+
+  <!-- Stars -->
+  <g fill="#ffffff">
+    <circle cx="100" cy="80" r="1.5" opacity="0.8"/>
+    <circle cx="250" cy="50" r="1" opacity="0.6"/>
+    <circle cx="400" cy="120" r="1.5" opacity="0.7"/>
+    <circle cx="550" cy="60" r="1" opacity="0.5"/>
+    <circle cx="700" cy="90" r="2" opacity="0.8"/>
+    <circle cx="850" cy="40" r="1.5" opacity="0.6"/>
+    <circle cx="1000" cy="100" r="1" opacity="0.7"/>
+    <circle cx="1150" cy="70" r="1.5" opacity="0.8"/>
+    <circle cx="80" cy="200" r="1" opacity="0.5"/>
+    <circle cx="200" cy="180" r="1.5" opacity="0.6"/>
+    <circle cx="350" cy="250" r="1" opacity="0.4"/>
+    <circle cx="500" cy="200" r="2" opacity="0.7"/>
+    <circle cx="650" cy="160" r="1" opacity="0.5"/>
+    <circle cx="800" cy="220" r="1.5" opacity="0.6"/>
+    <circle cx="950" cy="180" r="1" opacity="0.7"/>
+    <circle cx="1100" cy="250" r="1.5" opacity="0.5"/>
+    <circle cx="1200" cy="150" r="1" opacity="0.6"/>
+    <circle cx="150" cy="350" r="1" opacity="0.4"/>
+    <circle cx="300" cy="300" r="1.5" opacity="0.5"/>
+    <circle cx="450" cy="350" r="1" opacity="0.6"/>
+    <circle cx="600" cy="280" r="1.5" opacity="0.4"/>
+    <circle cx="750" cy="320" r="1" opacity="0.5"/>
+    <circle cx="900" cy="300" r="1.5" opacity="0.6"/>
+    <circle cx="1050" cy="350" r="1" opacity="0.4"/>
+    <circle cx="1180" cy="300" r="1.5" opacity="0.5"/>
+    <circle cx="50" cy="450" r="1" opacity="0.3"/>
+    <circle cx="680" cy="420" r="1.5" opacity="0.4"/>
+    <circle cx="820" cy="400" r="1" opacity="0.5"/>
+    <circle cx="980" cy="450" r="1.5" opacity="0.3"/>
+    <circle cx="1120" cy="420" r="1" opacity="0.4"/>
+  </g>
+
+  <!-- Star glows -->
+  <circle cx="700" cy="90" r="8" fill="url(#starGlow)" opacity="0.5"/>
+  <circle cx="500" cy="200" r="6" fill="url(#starGlow)" opacity="0.4"/>
+  <circle cx="1000" cy="100" r="5" fill="url(#starGlow)" opacity="0.4"/>
+
+  <!-- Title -->
+  <text x="640" y="100" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="bold" fill="#00e5ff" filter="url(#textGlow)" letter-spacing="8">LOCAL AI</text>
+
+  <!-- Graphics Card -->
+  <g transform="translate(340, 280)">
+    <!-- Card body -->
+    <rect x="0" y="0" width="600" height="220" rx="12" fill="url(#cardGrad)" stroke="#3a4560" stroke-width="2"/>
+    
+    <!-- Card top edge highlight -->
+    <rect x="0" y="0" width="600" height="6" rx="3" fill="url(#cardEdge)" opacity="0.6"/>
+
+    <!-- PCB lines / circuitry -->
+    <g stroke="#00e5ff" stroke-width="1.5" fill="none" opacity="0.6" filter="url(#glowFilter)">
+      <!-- Horizontal traces -->
+      <line x1="30" y1="40" x2="150" y2="40"/>
+      <line x1="30" y1="60" x2="200" y2="60"/>
+      <line x1="30" y1="80" x2="120" y2="80"/>
+      <line x1="450" y1="40" x2="570" y2="40"/>
+      <line x1="430" y1="60" x2="570" y2="60"/>
+      <line x1="460" y1="80" x2="570" y2="80"/>
+      <line x1="30" y1="180" x2="180" y2="180"/>
+      <line x1="420" y1="180" x2="570" y2="180"/>
+      <line x1="30" y1="200" x2="150" y2="200"/>
+      <line x1="450" y1="200" x2="570" y2="200"/>
+      
+      <!-- Vertical traces -->
+      <line x1="150" y1="40" x2="150" y2="80"/>
+      <line x1="200" y1="60" x2="200" y2="180"/>
+      <line x1="120" y1="80" x2="120" y2="180"/>
+      <line x1="450" y1="40" x2="450" y2="80"/>
+      <line x1="430" y1="60" x2="430" y2="180"/>
+      <line x1="460" y1="80" x2="460" y2="180"/>
+    </g>
+
+    <!-- Circuit nodes -->
+    <g fill="#00e5ff" filter="url(#glowFilter)" opacity="0.8">
+      <circle cx="150" cy="40" r="3"/>
+      <circle cx="200" cy="60" r="3"/>
+      <circle cx="120" cy="80" r="3"/>
+      <circle cx="450" cy="40" r="3"/>
+      <circle cx="430" cy="60" r="3"/>
+      <circle cx="460" cy="80" r="3"/>
+      <circle cx="180" cy="180" r="3"/>
+      <circle cx="420" cy="180" r="3"/>
+      <circle cx="150" cy="200" r="3"/>
+      <circle cx="450" cy="200" r="3"/>
+    </g>
+
+    <!-- GPU chip area -->
+    <rect x="220" y="50" width="160" height="120" rx="8" fill="#0a0e1a" stroke="#00e5ff" stroke-width="1.5" opacity="0.8"/>
+    <rect x="230" y="60" width="140" height="100" rx="4" fill="#0f1220" stroke="#00b8d4" stroke-width="1" opacity="0.6"/>
+    
+    <!-- GPU chip inner glow -->
+    <rect x="240" y="70" width="120" height="80" rx="2" fill="#00e5ff" opacity="0.1"/>
+    <rect x="250" y="80" width="100" height="60" rx="2" fill="#00e5ff" opacity="0.15"/>
+    
+    <!-- GPU chip text -->
+    <text x="300" y="115" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#00e5ff" opacity="0.7">GPU</text>
+
+    <!-- Fans -->
+    <g>
+      <!-- Fan 1 -->
+      <circle cx="100" cy="130" r="40" fill="url(#fanGrad)" stroke="#3a4560" stroke-width="2"/>
+      <circle cx="100" cy="130" r="30" fill="#0a0e1a" stroke="#00e5ff" stroke-width="1" opacity="0.5"/>
+      <g stroke="#00e5ff" stroke-width="1.5" opacity="0.4">
+        <line x1="100" y1="100" x2="100" y2="160"/>
+        <line x1="70" y1="130" x2="130" y2="130"/>
+        <line x1="78" y1="108" x2="122" y2="152"/>
+        <line x1="122" y1="108" x2="78" y2="152"/>
+      </g>
+      <circle cx="100" cy="130" r="8" fill="#1a1e30" stroke="#00e5ff" stroke-width="1.5" opacity="0.6"/>
+
+      <!-- Fan 2 -->
+      <circle cx="500" cy="130" r="40" fill="url(#fanGrad)" stroke="#3a4560" stroke-width="2"/>
+      <circle cx="500" cy="130" r="30" fill="#0a0e1a" stroke="#00e5ff" stroke-width="1" opacity="0.5"/>
+      <g stroke="#00e5ff" stroke-width="1.5" opacity="0.4">
+        <line x1="500" y1="100" x2="500" y2="160"/>
+        <line x1="470" y1="130" x2="530" y2="130"/>
+        <line x1="478" y1="108" x2="522" y2="152"/>
+        <line x1="522" y1="108" x2="478" y2="152"/>
+      </g>
+      <circle cx="500" cy="130" r="8" fill="#1a1e30" stroke="#00e5ff" stroke-width="1.5" opacity="0.6"/>
+    </g>
+
+    <!-- PCIe connector -->
+    <rect x="150" y="210" width="300" height="10" rx="3" fill="#1a1e30" stroke="#3a4560" stroke-width="1"/>
+    <rect x="160" y="215" width="80" height="4" rx="2" fill="#00e5ff" opacity="0.3"/>
+    <rect x="360" y="215" width="80" height="4" rx="2" fill="#00e5ff" opacity="0.3"/>
+
+    <!-- Glowing accent lines -->
+    <line x1="30" y1="30" x2="570" y2="30" stroke="url(#glowLine)" stroke-width="2" opacity="0.5"/>
+    <line x1="30" y1="190" x2="570" y2="190" stroke="url(#glowLine)" stroke-width="1.5" opacity="0.4"/>
+  </g>
+
+  <!-- Subtitle -->
+  <text x="640" y="580" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="bold" fill="#00e5ff" filter="url(#textGlow)" letter-spacing="4">763B on 12 GB</text>
+
+  <!-- Decorative glow under card -->
+  <ellipse cx="640" cy="520" rx="300" ry="20" fill="#00e5ff" opacity="0.08"/>
+  <ellipse cx="640" cy="520" rx="200" ry="10" fill="#00e5ff" opacity="0.12"/>
+
+  <!-- Decorative corner accents -->
+  <g stroke="#00e5ff" stroke-width="1.5" opacity="0.3">
+    <line x1="40" y1="40" x2="80" y2="40"/>
+    <line x1="40" y1="40" x2="40" y2="80"/>
+    <line x1="1240" y1="40" x2="1200" y2="40"/>
+    <line x1="1240" y1="40" x2="1240" y2="80"/>
+    <line x1="40" y1="680" x2="80" y2="680"/>
+    <line x1="40" y1="680" x2="40" y2="640"/>
+    <line x1="1240" y1="680" x2="1200" y2="680"/>
+    <line x1="1240" y1="680" x2="1240" y2="640"/>
+  </g>
+</svg>
